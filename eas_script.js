@@ -1,3 +1,12 @@
+function screenEffect() {
+    screen = document.querySelectorAll(".pxl");
+    for (let x = 0; x < screen.length; x++) {
+        screen[x].addEventListener("mouseenter", function(){
+            screen[x].classList.toggle('pxlOn');
+        })
+    }
+}
+
 function genGrid(a) {
     let tempGrid = document.createElement('div');
     mainGrid.appendChild(tempGrid);
@@ -15,7 +24,6 @@ function genGrid(a) {
         }
     }
     tempGrid.appendChild(toAdd);
-    screenEffect();
 }
 
 function removeGrid() {
@@ -23,24 +31,23 @@ function removeGrid() {
     grid.remove();
 }
 
-function screenEffect() {
-    screen = document.querySelectorAll(".pxl");
-    for (let x = 0; x < screen.length; x++) {
-        screen[x].addEventListener("mouseenter", function(){
-            screen[x].classList.toggle('pxlOn');
-        })
-    }
-}
 
 function gridInput(){
-    return prompt("Number of pixels per side of grid: ", '25');
+    let userInput = prompt("Number of pixels per side of grid (2-150): ", '50');
+    while (userInput > 150 && userInput < 2){
+        userInput = prompt("Number of pixels per side of grid (2-150): ", '50')
+
+    }
+    return userInput;
 }
 
 mainGrid = document.querySelector("body");
-genGrid(25);
+genGrid(50);
+screenEffect();
 
 gridBtn = document.querySelector('.gridBtn');
 gridBtn.addEventListener('click', function(){
     removeGrid();
     genGrid(gridInput());
+    screenEffect();
 })

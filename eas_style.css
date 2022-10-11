@@ -14,6 +14,7 @@
 
 .grid {
     display: flex;
+    flex: 1 0 auto;
     flex-wrap: wrap;
     background-color: bisque;
     padding: 30px;
